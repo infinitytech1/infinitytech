@@ -1,0 +1,166 @@
+Create a modern, minimal, high-end engineering portfolio website named **Infinity Tech**.
+
+## Objective
+
+Build a professional platform to showcase advanced engineering projects (PCB, AI, Embedded Systems, Robotics) in a way that attracts clients and investors. The design must communicate technical expertise, clarity, and credibility.
+
+---
+
+## Design Style
+
+* Dark, minimal, futuristic (NOT flashy)
+* Clean and structured layout (similar to GitHub and Vercel)
+* Focus on readability and hierarchy
+* No visual clutter
+
+---
+
+## Color System
+
+Use a strict and consistent color palette:
+
+* Background: #0B0F14
+
+* Surface (cards/sections): #121821
+
+* Borders: #1A2330
+
+* Primary Accent (ONLY ONE): #22D3EE (Cyan)
+
+* Text:
+
+  * Primary: #E6EDF3
+  * Secondary: #9CA3AF
+  * Muted: #6B7280
+
+⚠️ Do not use multiple accent colors. Keep it minimal and consistent.
+
+---
+
+## Layout & Structure
+
+### Navigation Bar
+
+* Simple top navbar
+* Logo: Infinity Tech
+* Links: Home | Projects | About | Contact
+
+---
+
+### Home Page
+
+* Hero section:
+
+  * Title: “Engineering the Future”
+  * Subtitle: Short, strong technical positioning
+  * CTA button: “View Projects”
+
+* Featured Projects section (grid layout)
+
+---
+
+### Projects Page
+
+* Grid-based layout (like GitHub repositories)
+* Each project displayed as a card
+
+#### Project Card must include:
+
+* Title
+* Short description
+* Tags (PCB, AI, Robotics, Embedded, etc.)
+* Preview image or thumbnail
+* Buttons:
+
+  * View Details
+  * View Code / Files
+
+---
+
+### Project Details Page
+
+Must be highly structured and technical:
+
+* Project Overview
+* Problem & Solution
+* Images and Videos
+* 3D Model Viewer (if possible)
+* Download section:
+
+  * Gerber Files
+  * Schematic
+  * Documentation
+* Code section (formatted)
+* Progress / Updates timeline
+
+---
+
+### About Page
+
+* Short professional bio
+* Skills / technologies
+* Vision (innovation + engineering)
+
+---
+
+### Contact Page
+
+* Simple form
+* Email / links
+
+---
+
+## UI Components
+
+* Cards with soft borders and subtle shadows
+* Rounded corners (12px–16px)
+* Clean spacing (16px–32px padding)
+* Tags with minimal styling
+
+---
+
+## Typography
+
+* Use modern font (Inter or Poppins)
+* Bold headings
+* Clean readable body text
+
+---
+
+## UX & Interaction
+
+* Smooth transitions (0.2–0.3s)
+* Subtle hover effects (slight scale or color change)
+* Fast loading
+* Responsive design (mobile + desktop)
+
+---
+
+## Visual Rules
+
+* 80% dark background
+* 15% surfaces/cards
+* 5% accent color only
+
+---
+
+## Constraints (IMPORTANT)
+
+* No clutter
+* No excessive animations
+* No multiple bright colors
+* No heavy shadows
+* Keep everything clean, technical, and professional
+
+---
+
+## Goal Result
+
+The final website should feel like:
+
+* A high-end engineering product
+* A professional technical portfolio
+* Investor-ready platform
+
+It should clearly communicate:
+“This engineer builds real, scalable, and investable projects.”

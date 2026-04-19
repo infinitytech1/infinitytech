@@ -1,0 +1,87 @@
+Design and implement a modern, professional UI system with a futuristic engineering style.
+
+Visual Style Requirements:
+
+1. Glassmorphism (Subtle):
+
+* Use semi-transparent backgrounds (rgba with low opacity)
+* Apply backdrop blur (backdrop-filter: blur)
+* Soft borders with low contrast
+* Avoid heavy blur or overuse
+
+2. Neumorphism (Light usage only):
+
+* Use soft inner/outer shadows for cards and buttons
+* Keep it minimal and subtle
+* Do NOT reduce readability or accessibility
+
+3. Animations:
+
+* Smooth, fast, and non-distracting
+* Use transitions (200ms–400ms)
+* Avoid heavy or slow animations
+* Use easing functions (ease-in-out)
+
+4. Micro-interactions:
+
+* Button hover effects (scale, glow, color shift)
+* Card hover (slight elevation or transform)
+* Input focus states (highlight border or glow)
+* Loading indicators (clean and minimal)
+
+5. Typography:
+
+* English:
+
+  * Primary: Inter
+  * Secondary: Space Grotesk
+* Arabic:
+
+  * Primary: Cairo
+  * Secondary: IBM Plex Arabic
+
+6. Typography Rules:
+
+* Clear hierarchy (H1, H2, body, captions)
+* Consistent spacing and line-height
+* Ensure readability in both Arabic and English
+
+7. Color System:
+
+* Dark mode (primary)
+* Light mode (secondary)
+* Use a tech/futuristic palette:
+
+  * Dark background (#0f172a or similar)
+  * Accent colors (blue / purple glow)
+* Maintain strong contrast for accessibility
+
+8. UI Components:
+
+* Buttons (primary / secondary / ghost)
+* Cards (glass effect)
+* Navbar (sticky with blur effect)
+* Sidebar (for dashboard)
+* Modals and dropdowns (smooth transitions)
+
+9. Responsiveness:
+
+* Fully responsive (mobile, tablet, desktop)
+* Maintain layout consistency
+
+10. Performance:
+
+* Optimize animations (use transform and opacity)
+* Avoid layout shifts
+
+Technical Stack:
+
+* Tailwind CSS
+* CSS variables for theming
+* Use modern CSS (flex, grid, backdrop-filter)
+
+Output:
+
+* Clean, production-ready UI code
+* Reusable components
+* Consistent design system

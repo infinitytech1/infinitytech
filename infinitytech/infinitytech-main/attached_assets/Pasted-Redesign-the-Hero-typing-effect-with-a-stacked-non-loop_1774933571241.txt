@@ -1,0 +1,102 @@
+Redesign the Hero typing effect with a stacked, non-looping, dimension-stable system.
+
+Core Concept:
+Display EXACTLY 3 powerful, connected engineering words, typed sequentially, stacked vertically, with a fully stable layout and no looping.
+
+---
+
+1. Text Content (CRITICAL):
+   Use EXACTLY 3 single words (NOT sentences), strongly connected in meaning:
+
+* Design
+* Precision
+* Performance
+
+These must represent a logical progression:
+Design → Precision → Performance
+
+---
+
+2. Layout & Dimension Stability (VERY IMPORTANT):
+
+* Words must be stacked vertically (each on its own line)
+* Pre-allocate space for ALL 3 lines BEFORE typing starts
+* The hero section dimensions MUST remain completely fixed
+* No layout shift, no jumping, no resizing
+
+Implementation rules:
+
+* Use a fixed-height container
+* Each line must have fixed height (min-height or line-height)
+* Width must not change based on word length
+
+---
+
+3. Typing Behavior:
+
+* Type first word letter-by-letter
+
+* After completion, wait 300–500ms
+
+* Then type second word (on the next line)
+
+* Then third word
+
+* Typing speed: realistic and smooth (not too fast)
+
+* No flickering, no glitches
+
+---
+
+4. Stop Behavior:
+
+* After all 3 words are typed:
+
+  * STOP completely
+  * Do NOT loop
+  * Do NOT delete text
+  * Keep all words visible permanently
+
+---
+
+5. Cursor Behavior:
+
+* Show cursor only on the active line
+* Cursor moves down with each new word
+* Optional: hide cursor after final word is completed
+
+---
+
+6. Animation Quality:
+
+* Smooth and stable
+* No re-render jumps
+* Use lightweight animation (CSS or optimized JS)
+* Avoid layout-triggering properties
+
+---
+
+7. Typography & Style:
+
+* Bold, large heading
+* Font:
+
+  * English: Inter or Space Grotesk
+* Strong spacing between lines
+* Clean, futuristic engineering style
+
+---
+
+8. Performance:
+
+* Lightweight implementation
+* No unnecessary re-renders
+* Maintain high performance
+
+---
+
+9. Output:
+
+* Clean, stable, professional hero typing effect
+* No layout shift
+* Premium engineering feel

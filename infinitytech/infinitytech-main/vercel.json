@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm --filter @workspace/api-server run build && pnpm --filter @workspace/infinity-tech run build",
+  "outputDirectory": "artifacts/infinity-tech/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/api"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "functions": {
+    "artifacts/api-server/dist/index.mjs": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

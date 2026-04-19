@@ -1,0 +1,26 @@
+Act as a Senior Full-Stack Developer. Implement a high-end Localization (i18n) system with a "Hybrid Content" strategy for the website.
+
+**1. Language Logic (The Hybrid Rule):**
+- **Primary Language:** Arabic (RTL) is the default for the body/content sections.
+- **English-Only Lockdown:** The **Header**, **Hero Section**, and **Footer** MUST remain strictly in **English** at all times. They should NOT change or translate when the language toggle is switched. 
+- **Content Translation:** Only the middle sections (Services, About, Portfolio, etc.) should toggle between Arabic and English.
+
+**2. Header & Navigation (Fixed & Global):**
+- **Persistence:** The Header must be `sticky` or `fixed` at the top with a high `z-index`.
+- **Content:** Navigation links (Home, Tech, Contact) must stay in English.
+- **Language Switcher:** Ensure the toggle (AR | EN) correctly updates the `dir` attribute of the `<html>` or main content wrapper (RTL for Arabic, LTR for English).
+
+**3. Hero & Footer (Static English):**
+- **Hero:** Keep "ARCHITECTURE | LOGIC | SYSTEMS" and the English sub-text as is.
+- **Footer:** Keep the "Technical Ecosystem" and "Get In Touch" sections in English only, as they represent the global brand identity.
+
+**4. Typography & Direction (The Pro Look):**
+- **Fonts:** - Use 'IBM Plex Sans Arabic' for all Arabic content with proper line-height.
+  - Use a clean, professional Sans-serif (like Inter or Roboto) for all English text.
+- **Directional Alignment:** When the user switches to Arabic, the layout of the "Content Sections" must flip to RTL, but the Header/Footer layout must maintain their professional English alignment to avoid visual breaking.
+
+**5. Technical Execution:**
+- Use a lightweight state management (like React Context or a simple State hook) to handle the `lang` variable.
+- Ensure the transition between RTL and LTR is smooth with a subtle CSS transition.
+
+Execute this architecture and provide the updated code for the Main Layout, Header, and Hero.

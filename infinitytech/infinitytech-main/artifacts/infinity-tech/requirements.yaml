@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For smooth page transitions and scroll-triggered animations in the futuristic portfolio"
+  "clsx": "For conditional class merging"
+  "tailwind-merge": "For conditional tailwind class merging"
+  "react-hook-form": "For the contact form state management"
+  "@hookform/resolvers": "For zod validation integration with react-hook-form"
+
+images:
+  - path: "artifacts/infinity-tech/public/images/hero-bg.png"
+    description: "Abstract dark futuristic technology background, deep #0B0F14 with subtle glowing cyan #22D3EE geometric lines, PCB traces, and soft light leaks, minimalist"
+    aspect_ratio: "16:9"
+  - path: "artifacts/infinity-tech/public/images/avatar.png"
+    description: "Professional minimalist portrait of an engineer, silhouette stylized with cyan lighting on dark background"
+    aspect_ratio: "1:1"
+
+notes:
+  - "The app uses a completely static data model for the first build as requested."
+  - "Mock TanStack query hooks are provided that return the static data to maintain standard architecture."

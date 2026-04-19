@@ -1,0 +1,76 @@
+modules = ["nodejs-24", "postgresql-16"]
+
+[[artifacts]]
+id = "artifacts/api-server"
+
+[[artifacts]]
+id = "artifacts/mockup-sandbox"
+
+[deployment]
+router = "application"
+deploymentTarget = "autoscale"
+build = ["sh", "-c", "pnpm --filter @workspace/infinity-tech run build"]
+run = ["sh", "-c", "node --enable-source-maps artifacts/api-server/dist/index.mjs "]
+
+[deployment.postBuild]
+args = ["pnpm", "store", "prune"]
+env = { "CI" = "true" }
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "API Server"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=21976 BASE_PATH=/ pnpm --filter @workspace/infinity-tech run dev"
+waitForPort = 21976
+
+[[workflows.workflow]]
+name = "API Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=8080 pnpm --filter @workspace/api-server run dev"
+waitForPort = 8080
+
+[agent]
+stack = "PNPM_WORKSPACE"
+expertMode = true
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
+
+[nix]
+channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+VAPID_PUBLIC_KEY = "BP_XoFiiYBiDHDGbqnwUQpk2gOLpwfnk1o1dpBiVT8mQS5LHnlEQuSLUCglZHzYoLjPdpJ3e7WWhpQRBNUaOQ0M"
+VAPID_EMAIL = "mailto:admin.infinity.tech@gmail.com"
+CLOUDINARY_CLOUD_NAME = "dvwzkyc4k"
+CLOUDINARY_API_KEY = "248518966117675"

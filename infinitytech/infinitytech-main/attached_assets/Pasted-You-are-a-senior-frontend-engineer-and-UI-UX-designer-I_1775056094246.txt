@@ -1,0 +1,123 @@
+You are a senior frontend engineer and UI/UX designer.
+
+I have an About page for a modern AI platform (Infinity). I need a FULL REFINEMENT of this page with the following changes:
+
+## 1) REMOVE HERO SECTION
+
+* Completely remove the current Hero section from the About page
+* Do NOT leave empty space or broken layout
+* The page should start cleanly with the next section
+
+---
+
+## 2) RESTORE PREVIOUS SECTION (IMPORTANT)
+
+* Bring back the previous section that existed before the hero (if available)
+* If not available, recreate a clean intro section:
+
+  * Title: About Me
+  * Short professional description (AI + Software + Systems)
+* Must look intentional and clean
+
+---
+
+## 3) SKILLS SECTION (FULL REDESIGN)
+
+The current skills section is weak. Redesign it professionally:
+
+### Requirements:
+
+* Use a grid layout (cards)
+* Each card:
+
+  * Icon
+  * Title (Frontend / Backend / AI / Hardware)
+  * Short description
+* Equal card sizes (NO resizing with text)
+* Clean spacing and alignment
+* Subtle hover effect (scale or glow, not heavy)
+* Fully responsive
+
+### Important:
+
+* Prevent layout shift between Arabic and English
+* Use fixed/min heights for cards
+
+---
+
+## 4) “LET’S BUILD” SECTION (MAKE IT PREMIUM)
+
+This section should feel like a strong CTA, not basic text.
+
+### Improve:
+
+* Strong headline
+* Clear value proposition
+* One primary button (Start Project)
+* Centered layout
+* Add subtle background effect (gradient or blur)
+
+---
+
+## 5) VISION SECTION (FIX OR SIMPLIFY)
+
+* If bullet points look weak or messy:
+  → either redesign them cleanly OR remove them completely
+
+### If keeping bullets:
+
+* Use consistent spacing
+* Use icons instead of raw dots
+* Keep text short and strong
+
+### If removing:
+
+* Replace with a strong paragraph (vision statement)
+
+---
+
+## 6) MULTILINGUAL STABILITY (CRITICAL)
+
+* Must support Arabic (RTL) and English (LTR)
+* NO layout shift when switching languages
+* Use:
+
+  * dir="rtl" / "ltr"
+  * CSS logical properties (padding-inline, margin-inline)
+* Avoid width based on content
+
+---
+
+## 7) DESIGN STYLE
+
+* Dark modern SaaS UI
+* Colors:
+
+  * Background: #0B0F19
+  * Primary: #3B82F6
+* Clean, minimal, professional
+* No heavy animations
+
+---
+
+## 8) PERFORMANCE
+
+* No lag
+* No unnecessary libraries
+* Optimized layout
+
+---
+
+## 9) OUTPUT
+
+* Clean HTML structure
+* Professional CSS (organized)
+* Improved content (English + Arabic)
+* Production-ready result
+
+---
+
+## IMPORTANT:
+
+The page should feel like a PREMIUM product page, not a personal portfolio.
+Everything must look intentional, aligned, and stable.

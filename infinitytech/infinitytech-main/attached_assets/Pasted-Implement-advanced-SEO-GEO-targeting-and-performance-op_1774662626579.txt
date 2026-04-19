@@ -1,0 +1,105 @@
+Implement advanced SEO, GEO-targeting, and performance optimization for a modern web platform.
+
+Core Requirements:
+
+1. Meta Tags (Dynamic & Professional):
+
+* Generate dynamic meta tags per page:
+
+  * title
+  * description
+  * keywords
+* Open Graph (OG) tags for social sharing:
+
+  * og:title
+  * og:description
+  * og:image
+  * og:url
+* Twitter Card support
+* Canonical URLs
+
+2. Structured Data (Schema.org):
+
+* Implement JSON-LD structured data
+* Use relevant schemas:
+
+  * WebSite
+  * Project / CreativeWork
+* Include:
+
+  * name
+  * description
+  * author (Infinity Tech)
+  * images
+* Inject schema dynamically per project page
+
+3. GEO Targeting:
+
+* Set HTML lang attribute dynamically (ar / en)
+* Use hreflang tags for multilingual SEO:
+
+  * ar
+  * en
+* Optimize content for both Arabic and English search
+
+4. Clean URLs:
+
+* Use human-readable URLs:
+
+  * /projects/project-name
+* Avoid query strings when possible
+* Implement slug system for projects
+
+5. Performance Optimization:
+
+* Optimize for Vercel deployment
+* Use server-side rendering (SSR) or static generation (SSG)
+* Enable caching strategies
+
+6. Lazy Loading:
+
+* Images: lazy load with placeholders
+* Videos: load on interaction or viewport
+* Components: dynamic import where needed
+
+7. Image Optimization:
+
+* Use modern formats (WebP/AVIF)
+* Responsive images (different sizes)
+* Compress images automatically
+
+8. Core Web Vitals:
+
+* Optimize:
+
+  * LCP (Largest Contentful Paint)
+  * CLS (Cumulative Layout Shift)
+  * FID (First Input Delay)
+* Avoid layout shifts
+* Use skeleton loaders
+
+9. Sitemap & Robots:
+
+* Generate sitemap.xml automatically
+* Configure robots.txt properly
+
+10. Analytics & Tracking:
+
+* Integrate analytics (Vercel Analytics or Google Analytics)
+* Track:
+
+  * page views
+  * project views
+  * downloads
+
+11. Technical Stack:
+
+* Next.js (App Router)
+* Built-in SEO handling
+* Middleware if needed
+
+Output:
+
+* Full implementation (code)
+* Production-ready setup
+* Optimized for search engines and performance

@@ -1,0 +1,146 @@
+Build a complete backend data system using Replit DB (key-value storage) for a project-based platform.
+
+Important:
+
+* Use Replit DB only (no external database)
+* Structure data cleanly to simulate a real database
+
+---
+
+1. Data Structure Design:
+
+Store data in structured JSON format inside Replit DB.
+
+Main keys:
+
+* "projects" → array of all projects
+* "comments" → array of all comments
+* "analytics" → object for tracking data
+* "updates" → project update logs
+
+---
+
+2. Project Structure:
+
+Each project object must include:
+
+{
+id: string,
+title_en: string,
+title_ar: string,
+description_en: string,
+description_ar: string,
+
+files: {
+gerber: string,
+schematic: string,
+model3d: string,
+source_code: string
+},
+
+media: {
+images: [string],
+videos: [string]
+},
+
+analytics: {
+views: number,
+downloads: number
+},
+
+updates: [
+{
+message: string,
+date: string
+}
+]
+}
+
+---
+
+3. Core Functions:
+
+Implement the following backend functions:
+
+* createProject(projectData)
+* getProjects()
+* getProjectById(id)
+* updateProject(id, data)
+* deleteProject(id)
+
+---
+
+4. Comments System:
+
+Store comments as:
+
+{
+id: string,
+project_id: string,
+name: string,
+message: string,
+created_at: string
+}
+
+Functions:
+
+* addComment()
+* getCommentsByProject(project_id)
+
+---
+
+5. Analytics Tracking:
+
+* Increment views when project page opens
+* Increment downloads when file is downloaded
+
+Functions:
+
+* trackView(project_id)
+* trackDownload(project_id)
+
+---
+
+6. Auto Translation Integration:
+
+* When adding a project:
+
+  * If only one language is provided
+  * Automatically generate the second language
+* Store both versions in DB
+
+---
+
+7. API Routes:
+
+Create simple API endpoints:
+
+* GET /api/projects
+* POST /api/projects
+* GET /api/projects/:id
+* POST /api/comments
+* GET /api/comments/:project_id
+* POST /api/track/view
+* POST /api/track/download
+
+---
+
+8. File Handling:
+
+* Store file URLs (not actual files)
+* Assume files are uploaded separately
+
+---
+
+9. Persistence:
+
+* Ensure data is saved in Replit DB
+* No in-memory storage
+
+---
+
+10. Output:
+
+* Fully working backend system
+* Clean structure
+* Easy to migrate later to real database (Supabase)

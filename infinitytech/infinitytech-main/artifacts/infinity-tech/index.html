@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0A0E13" />
+    <meta name="description" content="Fares Salah — Hardware Engineer & PCB Design specialist. Multi-layer HDI boards, embedded systems, and production-ready firmware." />
+    <meta property="og:title" content="INFINITY.TECH — Fares Salah" />
+    <meta property="og:description" content="Hardware Engineer & PCB Design — from schematic to silicon." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/opengraph.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>INFINITY.TECH — Fares Salah</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Infinity Tech" />
+
+    <!-- DNS prefetch for external origins -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Preconnect for Google Fonts (critical path) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Critical fonts: Inter (body) + Space Grotesk (display headings)
+      Loaded synchronously — these affect LCP text render
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=optional"
+    />
+
+    <!--
+      Non-critical fonts: Cairo, IBM Plex Sans Arabic, Fira Code
+      Loaded asynchronously to avoid render-blocking
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" />
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        var isPwa = window.matchMedia('(display-mode: standalone)').matches ||
+                    window.navigator.standalone === true;
+        if (isPwa) {
+          document.body.classList.add('pwa-mode');
+          window.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

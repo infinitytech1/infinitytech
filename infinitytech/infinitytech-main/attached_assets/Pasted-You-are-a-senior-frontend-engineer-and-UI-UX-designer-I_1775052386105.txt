@@ -1,0 +1,112 @@
+You are a senior frontend engineer and UI/UX designer.
+
+I want you to redesign and implement a professional "About Page" for a modern AI platform website called "Infinity".
+
+## Core Requirements:
+
+### 1. Multilingual Support (CRITICAL)
+
+* The page must support both English (LTR) and Arabic (RTL)
+* Use `dir="ltr"` and `dir="rtl"` properly on the `<html>` element
+* DO NOT break layout when switching languages
+* Use CSS logical properties (margin-inline, padding-inline, text-align: start)
+* Avoid fixed widths that depend on text length
+* Ensure ZERO layout shift when switching languages
+
+---
+
+### 2. Design Style
+
+* Dark modern UI (similar to SaaS AI platforms)
+* Colors:
+
+  * Background: #0B0F19
+  * Primary: #3B82F6
+  * Text: white / gray
+* Font:
+
+  * English: Inter
+  * Arabic: Cairo or Tajawal
+* Clean spacing, smooth layout, no clutter
+* Subtle animations only (no heavy effects)
+
+---
+
+### 3. About Page Structure
+
+#### Section 1: Hero
+
+* Strong headline
+* Subheadline explaining value
+* CTA button (Start Project)
+
+#### Section 2: Who I Am
+
+* Short professional intro
+* Focus on building AI systems and software
+
+#### Section 3: Skills / Tech Stack
+
+* Frontend, Backend, AI, Hardware
+* Display as clean cards or grid
+
+#### Section 4: Vision
+
+* Explain long-term goal (Infinity platform vision)
+
+#### Section 5: CTA
+
+* Clear call to action (Contact / Start Project)
+
+---
+
+### 4. Performance
+
+* Fully responsive
+* No lag
+* Use optimized images
+* Avoid unnecessary JS libraries
+
+---
+
+### 5. Implementation Details
+
+* Use semantic HTML5
+
+* Use Flexbox or Grid
+
+* Use reusable classes
+
+* All text must support:
+  data-en=""
+  data-ar=""
+
+* Include a language switch function in JavaScript:
+
+switchLanguage(lang) {
+document.documentElement.lang = lang;
+document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+document.querySelectorAll("[data-en]").forEach(el => {
+el.textContent = el.getAttribute(`data-${lang}`);
+});
+}
+
+---
+
+### 6. Output المطلوبة:
+
+* Full HTML
+* Full CSS (clean, structured)
+* JavaScript for language switching
+* Professional content written in BOTH English and Arabic
+
+---
+
+### 7. Important:
+
+* The layout MUST remain stable when switching languages
+* No shifting, no resizing, no broken alignment
+* The result should look like a premium SaaS website
+
+Generate production-ready code.

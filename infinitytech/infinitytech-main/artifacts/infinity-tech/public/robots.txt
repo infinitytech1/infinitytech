@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block admin section from indexing
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://infinitytech.dev/sitemap.xml

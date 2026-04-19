@@ -1,0 +1,151 @@
+Refine and optimize the existing **Infinity Tech** website to fix performance issues and redesign the hero section to a high-end, professional, investor-ready level.
+
+---
+
+## 1) Performance Optimization (CRITICAL)
+
+The website currently feels laggy. Improve performance with the following strict rules:
+
+* Reduce heavy visual effects:
+
+  * Limit backdrop-blur to a maximum of blur(8px)
+  * Remove excessive glow and large shadows
+  * Avoid layered filters and complex CSS effects
+
+* Optimize animations:
+
+  * Do NOT use "transition: all"
+  * Use only:
+
+    * transform
+    * opacity
+  * Duration: 0.2s–0.3s max
+
+* Use GPU acceleration where needed:
+
+  * Apply transform: translateZ(0) or will-change: transform on animated elements
+
+* Disable or remove:
+
+  * Particle backgrounds
+  * Heavy canvas animations
+  * Continuous infinite animations
+
+* Optimize media:
+
+  * Enable lazy loading for images
+  * Compress images
+  * Avoid autoplay videos in hero section
+
+---
+
+## 2) Hero Section Redesign (HIGH PRIORITY)
+
+Completely redesign the hero section to look like a premium engineering product website.
+
+---
+
+### Layout (Split Screen)
+
+Left Side:
+
+* Strong headline
+* Short technical subtitle
+* Call-to-action buttons
+
+Right Side:
+
+* Visual preview (PCB render, 3D model, or project image)
+
+---
+
+### Content
+
+Headline:
+"Engineering Real-World Systems"
+
+Subtitle:
+"Designing scalable solutions in PCB, AI, and embedded systems — built for real-world applications."
+
+Buttons:
+
+* Primary: View Projects
+* Secondary: Contact Me
+
+---
+
+## 3) Visual Design Enhancements
+
+* Add subtle background depth:
+
+  * Use a very soft radial gradient:
+
+    * Cyan tint with very low opacity (5–8%)
+    * No harsh lighting
+
+* Add clean spacing and hierarchy:
+
+  * Large heading (clear visual focus)
+  * Generous whitespace
+
+* Highlight one keyword in the title using accent color
+
+---
+
+## 4) UI & Effects (Subtle and Premium Only)
+
+* Card hover:
+
+  * translateY(-3px)
+  * slight scale (1.01)
+  * soft border highlight
+
+* Button hover:
+
+  * small upward movement
+  * color shift (cyan → darker cyan)
+
+* Add fade-in on scroll (light and smooth)
+
+⚠️ No aggressive animations. No flashy effects.
+
+---
+
+## 5) Styling Rules
+
+* Keep the dark theme:
+
+  * Background: #0A0E13
+  * Cards: #121821
+
+* Accent:
+
+  * Primary: #22D3EE
+  * Hover: #06B6D4
+
+* Borders:
+
+  * rgba(255,255,255,0.05)
+
+* Shadows:
+
+  * Very soft and minimal
+
+---
+
+## 6) Final Goal
+
+Transform the website from:
+"A basic clean portfolio"
+
+Into:
+"A high-performance, premium engineering platform"
+
+The hero section should instantly communicate:
+
+* Technical expertise
+* Real-world engineering capability
+* Investor-level seriousness
+
+The entire experience must feel:
+Fast, smooth, and intentionally designed.

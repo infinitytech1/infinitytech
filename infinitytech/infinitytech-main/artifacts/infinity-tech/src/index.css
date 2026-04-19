@@ -1,0 +1,772 @@
+@import "tailwindcss";
+
+/* ─── PWA standalone: disable selection, callout, tap highlight ─────────────
+   Only activates when the app runs as an installed PWA (display-mode: standalone).
+   Regular browser visitors are completely unaffected.                          */
+.pwa-mode * {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.pwa-mode input,
+.pwa-mode textarea,
+.pwa-mode [contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@theme inline {
+  --color-background:           hsl(var(--background));
+  --color-foreground:           hsl(var(--foreground));
+  --color-border:               hsl(var(--border));
+  --color-input:                hsl(var(--input));
+  --color-ring:                 hsl(var(--ring));
+  --color-card:                 hsl(var(--card));
+  --color-card-foreground:      hsl(var(--card-foreground));
+  --color-card-border:          hsl(var(--card-border));
+  --color-primary:              hsl(var(--primary));
+  --color-primary-foreground:   hsl(var(--primary-foreground));
+  --color-secondary:            hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted:                hsl(var(--muted));
+  --color-muted-foreground:     hsl(var(--muted-foreground));
+  --color-accent:               hsl(var(--accent));
+  --color-accent-foreground:    hsl(var(--accent-foreground));
+  --color-destructive:          hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --font-sans:    'Inter', sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-arabic:  'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+  --font-mono:    'Fira Code', monospace;
+
+  --radius-sm:  0.25rem;
+  --radius-md:  0.5rem;
+  --radius-lg:  0.75rem;
+  --radius-xl:  1rem;
+  --radius-2xl: 1.5rem;
+}
+
+/* ─── Dark Theme (primary) ─────────────────────────────────── */
+:root {
+  --background:            213 28% 7%;
+  --foreground:            210 40% 93%;
+  --border:                215 30% 15%;
+  --input:                 215 30% 15%;
+  --card:                  216 29% 10%;
+  --card-foreground:       210 40% 93%;
+  --card-border:           215 30% 15%;
+  --primary:               188 86% 53%;
+  --primary-foreground:    213 29% 6%;
+  --ring:                  188 86% 53%;
+  --secondary:             215 30% 15%;
+  --secondary-foreground:  210 40% 93%;
+  --muted:                 215 30% 15%;
+  --muted-foreground:      218 11% 65%;
+  --text-muted:            220 9% 46%;
+  --accent:                188 86% 53%;
+  --accent-foreground:     213 29% 6%;
+  --destructive:           0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --radius:                0.75rem;
+
+  /* Glass effect tokens */
+  --glass-bg:        rgba(12, 22, 35, 0.55);
+  --glass-border:    rgba(34, 211, 238, 0.10);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --glow-primary:    rgba(34, 211, 238, 0.18);
+  --glow-primary-lg: rgba(34, 211, 238, 0.08);
+
+  /* Neumorphism tokens */
+  --neuro-bg:        hsl(213 28% 9%);
+  --neuro-shadow-dk: rgba(0, 0, 0, 0.55);
+  --neuro-shadow-lt: rgba(255, 255, 255, 0.04);
+}
+
+/* Light theme removed — site is dark-mode only */
+
+/* ─── Base ─────────────────────────────────────────────────── */
+@layer base {
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: hsl(var(--background));
+    background-image: linear-gradient(135deg, #0A0E13 0%, #0d1520 60%, #0c1a28 100%);
+    background-attachment: fixed;
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+
+  /*
+   * Arabic typography — triggered by [lang="ar"] on <html>.
+   * Layout stays LTR; only font metrics change.
+   * letter-spacing: 0 prevents Latin tracking from breaking Arabic glyphs.
+   * line-height: 1.8 gives Arabic descenders room to breathe.
+   */
+  [lang="ar"] {
+    font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif;
+    letter-spacing: 0;
+    line-height: 1.8;
+  }
+
+  /* Typography hierarchy */
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+  h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: hsla(var(--border));
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--primary) / 0.4);
+  }
+
+  /* Selection */
+  ::selection {
+    background: hsla(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ─── Animations ───────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--glow-primary); }
+  50%       { box-shadow: 0 0 24px 4px var(--glow-primary); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes shimmer-x {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes code-scan {
+  0%   { top: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(34, 211, 238, 0.15); }
+  50%       { border-color: rgba(34, 211, 238, 0.45); }
+}
+
+/* ─── Utilities ────────────────────────────────────────────── */
+@layer utilities {
+
+  /* ── Fonts ── */
+  .font-display { font-family: var(--font-display); }
+  .font-arabic  { font-family: var(--font-arabic); }
+
+  /*
+   * Bilingual text-direction utilities
+   * ─────────────────────────────────
+   * Apply .ar-text to any element whose content is Arabic.
+   * Apply .en-text to any element whose content is English.
+   * These ONLY change text flow and font — they never touch layout direction.
+   *
+   * Usage:
+   *   <p className={`text-muted-foreground ${textClass}`}>
+   *     {t("English sentence.", "جملة عربية.")}
+   *   </p>
+   */
+  .ar-text {
+    font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif;
+    direction: rtl;
+    text-align: right;
+    letter-spacing: 0 !important;   /* Arabic glyphs break with Latin tracking */
+    line-height: 1.82;
+    unicode-bidi: embed;            /* isolate bidi within the element          */
+  }
+
+  .en-text {
+    font-family: var(--font-sans);
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: embed;
+  }
+
+  /* Headings that receive .ar-text must use the Arabic typeface, not Space Grotesk */
+  h1.ar-text, h2.ar-text, h3.ar-text,
+  h4.ar-text, h5.ar-text, h6.ar-text {
+    font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif;
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
+
+  /* Small eyebrow / label text — suppress uppercase spacing for Arabic glyphs */
+  .ar-text.uppercase,
+  .ar-text.tracking-widest,
+  .ar-text[class*="tracking-"] {
+    letter-spacing: 0 !important;
+  }
+
+  /* ── Glassmorphism ── */
+  .glass {
+    background:   var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    border: 1px solid var(--glass-border);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 4px 24px rgba(0, 0, 0, 0.18),
+      0 1px 4px rgba(0, 0, 0, 0.12);
+  }
+  .glass-card {
+    background:   var(--glass-bg);
+    backdrop-filter: blur(10px) saturate(1.3);
+    -webkit-backdrop-filter: blur(10px) saturate(1.3);
+    border: 1px solid var(--glass-border);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 2px 16px rgba(0, 0, 0, 0.14);
+  }
+  .glass-navbar {
+    background:   rgba(10, 14, 19, 0.78);
+    backdrop-filter: blur(18px) saturate(1.7);
+    -webkit-backdrop-filter: blur(18px) saturate(1.7);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.09);
+    box-shadow: 0 1px 0 rgba(34, 211, 238, 0.05), 0 4px 24px rgba(0, 0, 0, 0.28);
+  }
+  html.light .glass-navbar {
+    background: rgba(238, 244, 250, 0.85);
+    backdrop-filter: blur(18px) saturate(1.7);
+    -webkit-backdrop-filter: blur(18px) saturate(1.7);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.14);
+    box-shadow: 0 1px 0 rgba(34, 211, 238, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-[8px] border border-border;
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+  }
+
+  /* ── Neumorphism ── */
+  .neuro {
+    background: var(--neuro-bg);
+    box-shadow:
+      6px 6px 12px var(--neuro-shadow-dk),
+      -4px -4px 10px var(--neuro-shadow-lt);
+  }
+  .neuro-inset {
+    background: var(--neuro-bg);
+    box-shadow:
+      inset 4px 4px 8px var(--neuro-shadow-dk),
+      inset -3px -3px 7px var(--neuro-shadow-lt);
+  }
+  .neuro-btn {
+    background: var(--neuro-bg);
+    box-shadow:
+      4px 4px 8px var(--neuro-shadow-dk),
+      -3px -3px 7px var(--neuro-shadow-lt);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  .neuro-btn:hover {
+    box-shadow:
+      6px 6px 12px var(--neuro-shadow-dk),
+      -4px -4px 10px var(--neuro-shadow-lt),
+      0 0 0 1px rgba(34, 211, 238, 0.2);
+    transform: translateY(-1px);
+  }
+  .neuro-btn:active {
+    box-shadow:
+      inset 3px 3px 6px var(--neuro-shadow-dk),
+      inset -2px -2px 5px var(--neuro-shadow-lt);
+    transform: translateY(0);
+  }
+
+  /* ── Buttons ── */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+    will-change: transform;
+  }
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: inherit;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 20px var(--glow-primary), 0 4px 16px rgba(0,0,0,0.2);
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-glow:hover::before { opacity: 1; }
+  .btn-glow:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 0 10px var(--glow-primary);
+  }
+
+  .btn-ghost-glow {
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost-glow:hover {
+    background: hsla(var(--primary) / 0.08);
+    border-color: hsla(var(--primary) / 0.3);
+    box-shadow: 0 0 12px var(--glow-primary), inset 0 0 12px rgba(34,211,238,0.04);
+    color: hsl(var(--primary));
+  }
+
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    transition: transform 0s;
+  }
+  .btn-shimmer:hover::after {
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-primary-glow {
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary-glow:hover {
+    box-shadow: 0 0 24px var(--glow-primary), 0 4px 16px rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ── Cards ── */
+  .hover-card-anim {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+  }
+  .hover-card-anim:hover {
+    transform: translateY(-4px) scale(1.005);
+    border-color: rgba(34, 211, 238, 0.2);
+    box-shadow: 0 8px 32px var(--glow-primary-lg), 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* ── Text Effects ── */
+  .text-glow {
+    text-shadow: 0 0 20px hsla(var(--primary) / 0.35);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, #67e8f9 50%, hsl(var(--primary)) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite;
+  }
+  .text-gradient-static {
+    background: linear-gradient(135deg, hsl(var(--primary)) 30%, #a5f3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Glow ── */
+  .box-glow {
+    box-shadow: 0 0 20px var(--glow-primary-lg);
+  }
+  .glow-pulse { animation: pulse-glow 2.5s ease-in-out infinite; }
+  .float-anim { animation: float 4s ease-in-out infinite; }
+
+  /* ── Nav ── */
+  .nav-link-underline {
+    position: relative;
+  }
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+    border-radius: 9999px;
+  }
+  .nav-link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Arabic: drop underline so it clears Cairo's dots/tails (ي، ة، etc.) */
+  body.lang-ar header[data-navbar] .nav-link-underline::after {
+    bottom: -12px;
+  }
+
+  /* ── Misc ── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsla(var(--border)), transparent);
+    width: 100%;
+  }
+
+  .code-scanner {
+    animation: code-scan 4s ease-in-out infinite;
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.45), transparent);
+    pointer-events: none;
+  }
+
+  .metric-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.07), transparent);
+    transform: translateX(-100%);
+    animation: shimmer-x 3.5s ease-in-out infinite;
+  }
+
+  .slide-up   { animation: slide-up 0.4s cubic-bezier(0.23, 1, 0.32, 1) both; }
+  .fade-in    { animation: fade-in 0.3s ease both; }
+
+  /* Input focus glow */
+  .input-glow:focus {
+    outline: none;
+    border-color: hsla(var(--primary) / 0.5);
+    box-shadow: 0 0 0 3px rgba(34,211,238,0.12), 0 0 16px rgba(34,211,238,0.06);
+  }
+
+  /* Gradient border on hover */
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(34,211,238,0.3), transparent 60%, rgba(34,211,238,0.1));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+  }
+  .gradient-border:hover::before { opacity: 1; }
+
+  /* Scrollbar hidden */
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { scrollbar-width: none; }
+
+  /* Background grid dot pattern */
+  .bg-grid {
+    background-image: radial-gradient(circle, rgba(34,211,238,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* content-visibility: skip off-screen rendering for below-fold sections */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
+  }
+}
+
+/* ─── Global Language Toggle Classes ─────────────────────── */
+/*
+ * Applied to <body> by LanguageContext — not to <html>, so the page
+ * layout direction (dir="ltr") is never touched.
+ *
+ * Strategy:
+ *   • Font switches globally for every element.
+ *   • Layout containers (div, section, nav, etc.) are pinned to
+ *     direction: ltr so flex/grid row order is NEVER reversed.
+ *   • Prose elements (p, h1–h6, li, input, label, td, th) get
+ *     direction: rtl + text-align: right in Arabic mode.
+ *   • Code/pre blocks always stay LTR + monospace font.
+ */
+
+/* ── Arabic ──────────────────────────────────────────────── */
+body.lang-ar {
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif;
+  letter-spacing: 0;
+  line-height: 1.8;
+}
+body.lang-ar * {
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif;
+  letter-spacing: 0 !important;
+}
+
+/* Layout containers: always ltr — flex/grid/nav row order preserved */
+body.lang-ar div,
+body.lang-ar section,
+body.lang-ar nav,
+body.lang-ar header,
+body.lang-ar footer,
+body.lang-ar main,
+body.lang-ar aside,
+body.lang-ar article,
+body.lang-ar ul,
+body.lang-ar ol,
+body.lang-ar form,
+body.lang-ar fieldset,
+body.lang-ar table,
+body.lang-ar thead,
+body.lang-ar tbody,
+body.lang-ar tr {
+  direction: ltr;
+}
+
+/* Prose / form elements: RTL text direction + right alignment */
+body.lang-ar p,
+body.lang-ar h1, body.lang-ar h2, body.lang-ar h3,
+body.lang-ar h4, body.lang-ar h5, body.lang-ar h6,
+body.lang-ar li,
+body.lang-ar label,
+body.lang-ar input,
+body.lang-ar textarea,
+body.lang-ar select,
+body.lang-ar td,
+body.lang-ar th {
+  direction: rtl;
+  text-align: right;
+  unicode-bidi: plaintext;  /* numbers/Latin inside Arabic render correctly */
+}
+
+/* Headings: Arabic typeface wins over Space Grotesk set in @layer base */
+body.lang-ar h1, body.lang-ar h2, body.lang-ar h3,
+body.lang-ar h4, body.lang-ar h5, body.lang-ar h6 {
+  line-height: 1.5;
+}
+
+/* Code blocks: always LTR + monospace — language never changes these */
+body.lang-ar code, body.lang-ar pre,
+body.lang-ar kbd, body.lang-ar samp {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--font-mono) !important;
+  letter-spacing: normal !important;
+  unicode-bidi: embed;
+}
+
+/* ── English ─────────────────────────────────────────────── */
+body.lang-en {
+  font-family: var(--font-sans);
+}
+body.lang-en * {
+  font-family: inherit;
+}
+body.lang-en p,
+body.lang-en h1, body.lang-en h2, body.lang-en h3,
+body.lang-en h4, body.lang-en h5, body.lang-en h6,
+body.lang-en li,
+body.lang-en label,
+body.lang-en input,
+body.lang-en textarea,
+body.lang-en select,
+body.lang-en td,
+body.lang-en th {
+  direction: ltr;
+  text-align: left;
+}
+/* Headings: restore display typeface (Space Grotesk) in English */
+body.lang-en h1, body.lang-en h2, body.lang-en h3 {
+  font-family: var(--font-display);
+}
+
+/* ─── Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep layout-shift-preventing invisible spans visible */
+  .invisible { visibility: hidden !important; }
+}
+
+/* ─── Navbar: immune to language-switch reflow ──────────────
+ *
+ * Problem: `body.lang-ar * { font-family: Cairo; letter-spacing: 0 !important }`
+ * cascades into the header and changes:
+ *   1. Font metrics (Cairo is visually taller than Inter / Space Grotesk)
+ *   2. Letter-spacing (strips the tracking from the INFINITY. wordmark)
+ *   3. line-height (body.lang-ar sets 1.8 which cascades)
+ *
+ * Fix strategy:
+ *   - Hard-lock the header height with !important (belt + suspenders with
+ *     the inline style in Navbar.tsx)
+ *   - Restore wordmark letter-spacing with a higher-specificity !important
+ *   - Clamp line-height on all header children to 1 so font-metric changes
+ *     cannot push content outside the locked height box
+ * ─────────────────────────────────────────────────────────── */
+header[data-navbar] {
+  height: 4.5rem !important;
+  min-height: 4.5rem !important;
+  max-height: 4.5rem !important;
+}
+
+/* Wordmark tracking — restores spacing stripped by the global AR rule */
+body.lang-ar header[data-navbar] .nb-wordmark {
+  letter-spacing: 0.12em !important;
+}
+body.lang-ar header[data-navbar] .nb-wordmark-sub {
+  letter-spacing: 0.32em !important;
+}
+
+/* Line-height shield — prevents the body 1.8 cascade from expanding rows */
+body.lang-ar header[data-navbar],
+body.lang-ar header[data-navbar] * {
+  line-height: 1 !important;
+}
+
+/* ─── Navbar: suppress all browser focus / active rings ─────
+ *
+ * Removes the default outline that browsers add to the last-clicked
+ * element (which "sticks" during scroll). Hover effects are untouched
+ * because they rely only on background/color/box-shadow transitions.
+ *
+ * :focus          → immediate click feedback removed
+ * :focus-visible  → keyboard-navigation outline also removed (intentional
+ *                   for this nav — the active-link underline serves that role)
+ * :active         → prevents a flash ring during mousedown
+ * ─────────────────────────────────────────────────────────── */
+header[data-navbar] a:focus,
+header[data-navbar] a:focus-visible,
+header[data-navbar] a:active,
+header[data-navbar] button:focus,
+header[data-navbar] button:focus-visible,
+header[data-navbar] button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile drawer / overlay — same rule for any portalled nav elements */
+[data-mobile-nav] a:focus,
+[data-mobile-nav] a:focus-visible,
+[data-mobile-nav] a:active,
+[data-mobile-nav] button:focus,
+[data-mobile-nav] button:focus-visible,
+[data-mobile-nav] button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Fluid typography utilities ────────────────────────────
+ *
+ * Uses CSS clamp() for smooth, continuous font-size scaling
+ * across all viewport widths — no hard breakpoint jumps.
+ *
+ *   .fluid-h1  → hero-scale headings    (~1.75rem → 3.5rem)
+ *   .fluid-h2  → section headings       (~1.375rem → 2.5rem)
+ *   .fluid-h3  → card/subsection titles (~1rem → 1.5rem)
+ *
+ * Usage:  <h1 className="fluid-h1 font-black tracking-tight ...">
+ * ─────────────────────────────────────────────────────────── */
+.fluid-h1 {
+  font-size: clamp(1.75rem, 4.5vw + 0.5rem, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.fluid-h2 {
+  font-size: clamp(1.375rem, 3vw + 0.5rem, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+.fluid-h3 {
+  font-size: clamp(1rem, 1.5vw + 0.4rem, 1.375rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Section spacing utilities ─────────────────────────────
+ *
+ * Fluid vertical padding — tighter on mobile, generous on desktop.
+ * Replaces hard-coded `py-24` which wastes space on phones.
+ * ─────────────────────────────────────────────────────────── */
+.section-y     { padding-block: clamp(3rem, 8vw, 6rem); }
+.section-y-sm  { padding-block: clamp(2rem, 5vw, 4rem); }
+
+/* ─── Responsive image ───────────────────────────────────── */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Mobile touch targets ───────────────────────────────── */
+@media (max-width: 640px) {
+  button, a, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ─── Admin input base style ──────────────────────────────── */
+.admin-input {
+  width: 100%;
+  background: hsl(var(--input) / 0.15);
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8125rem;
+  color: hsl(var(--foreground));
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.admin-input::placeholder {
+  color: hsl(var(--muted-foreground) / 0.5);
+}
+.admin-input:focus {
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.12);
+}

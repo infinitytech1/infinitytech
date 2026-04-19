@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Infinity Tech"
+version = "1.0.0"
+id = "artifacts/infinity-tech"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21976
+
+[services.development]
+run = "pnpm --filter @workspace/infinity-tech run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/infinity-tech", "run", "build" ]
+publicDir = "artifacts/infinity-tech/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21976"
+BASE_PATH = "/"

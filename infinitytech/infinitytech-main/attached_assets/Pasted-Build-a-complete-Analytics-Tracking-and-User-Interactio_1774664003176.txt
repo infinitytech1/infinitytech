@@ -1,0 +1,119 @@
+Build a complete Analytics, Tracking, and User Interaction system for a project-based platform.
+
+Part 1: Analytics & Tracking
+
+Requirements:
+
+1. Track user behavior:
+
+* Page views per project
+* Time spent on each project page
+* Scroll depth (optional)
+* Click tracking (downloads, buttons)
+
+2. Project Insights:
+
+* Most viewed projects
+* Total views per project
+* Number of downloads per project
+
+3. Dashboard Integration:
+
+* Display analytics in Admin Dashboard:
+
+  * Charts (views over time)
+  * Top projects
+  * Engagement metrics
+
+4. Tools Integration:
+
+* Integrate Vercel Analytics OR Google Analytics
+* Additionally implement custom tracking:
+
+  * Store key events in database (views, downloads)
+
+5. Data Storage:
+
+* Save analytics data in database (Supabase or Firebase)
+* Structure:
+
+  * project_id
+  * views_count
+  * downloads_count
+  * average_time_spent
+
+6. Performance:
+
+* Tracking must be lightweight
+* Use async/event-based logging
+* Avoid blocking UI
+
+---
+
+Part 2: Comment System
+
+Requirements:
+
+1. Per Project Comments:
+
+* Each project has its own comment section
+* Users can:
+
+  * Add comment
+  * Reply (optional nested system)
+
+2. Comment Fields:
+
+* Name (no login required)
+* Message
+* Timestamp
+
+3. Moderation (Admin):
+
+* Delete comments
+* Hide inappropriate content
+
+4. UI:
+
+* Clean and minimal design
+* Real-time feel (optional)
+
+---
+
+Part 3: Notifications System (Optional but scalable)
+
+Requirements:
+
+1. Admin Notifications:
+
+* Notify admin when:
+
+  * New comment added
+  * High activity on project
+
+2. Optional User Notifications:
+
+* Show simple in-site alerts (no login required)
+
+3. Implementation:
+
+* Use lightweight system (no complex auth)
+* Can use toast notifications or dashboard alerts
+
+---
+
+Technical Stack:
+
+* Next.js (App Router)
+* Supabase or Firebase (DB + realtime optional)
+* API routes for tracking and comments
+* Charts library (e.g. Recharts)
+
+---
+
+Output:
+
+* Full working implementation
+* Real data tracking (no mock)
+* Scalable structure
+* Ready for deployment on Vercel
